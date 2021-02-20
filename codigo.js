@@ -16,16 +16,16 @@ let cobraX = cobraY = 10;
 
 let comidaX = comidaY = 15;
 
-let tamanhoquadradinho = tamanhoCaminho= 20;
+let tamanhoQuadradinho = tamanhoCaminho = 20;
 
-window.onload = function() {
+window.onload = function () {
 
 
     tela = document.getElementById("canvas");
 
-
-
     ctx = tela.getContext("2d");
+
+    document.addEventListener("keydown", keyDownEvent);
 
     let vel = 8;
 
@@ -53,26 +53,29 @@ function keyDownEvent(tecla) {
 
 function desenharJogo() {
 
+    cobraX = cobraX+proxX;
+    cobraY = cobraY+proxY;
+
     ctx.fillStyle = "#00a9c7";
 
-    ctx.fillRect(0 , 0, tela.width, tela.height);
-    
-    ctx.fillStyle = "#c70000";
+    ctx.fillRect(0, 0, tela.width, tela.height);
 
-    for(let i = 0; i<caminhoCobra.length;i++){
+    ctx.fillStyle = "yellow";
+
+    for (let i = 0; i < caminhoCobra.length; i++) {
         ctx.fillRect(
-            caminhoCobra[i].x*tamanhoCaminho,
-            caminhoCobra[i].y*tamanhoCaminho,
-    tamanhoCaminho,
-    tamanhoCaminho
+            caminhoCobra[i].x * tamanhoCaminho,
+            caminhoCobra[i].y * tamanhoCaminho,
+            tamanhoCaminho,
+            tamanhoCaminho
         );
-        if(caminhoCobra[i].x==cobraX && caminhoCobra[i].y == cobraY){
-                    tamanhoCobra = tamanhoCobraPadrao;
+        if (caminhoCobra[i].x == cobraX && caminhoCobra[i].y == cobraY) {
+            tamanhoCobra = tamanhoCobraPadrao;
 
         }
     }
     caminhoCobra.push({
-        X:cobraX,
-        y:cobraY
+        x: cobraX,
+        y: cobraY
     });
 }
